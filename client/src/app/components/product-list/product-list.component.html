@@ -8,7 +8,7 @@
                 <i class="far fa-trash-alt"></i>
             </button>
         </div>
-        <img [src]="product.img" class="card-img-top" alt="s">
+        <img [src]="'http://localhost:3000/' + product.img" class="card-img-top" alt="s">
         <div class="card card-body">
             <p>{{ product.descripcion }}</p>
             <a class="btn btn-primary" [routerLink]="['/products/edit', product.id_producto]">Edit</a>

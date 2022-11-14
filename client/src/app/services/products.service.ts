@@ -17,15 +17,29 @@ export class ProductsService {
     return this.http.get(this.API_URI+'/productos/'+id);
   }
 
-  updateProduct(id: string|number, updatedProduct: Product){
-    return this.http.put(this.API_URI+'/productos/'+id, updatedProduct);
+  updateProduct(id: string|number, updatedProduct: Product, file: File){
+    const fd = new FormData();
+    fd.append('nombre', updatedProduct.nombre!);
+    fd.append('descripcion', updatedProduct.descripcion!);
+    fd.append('precio', updatedProduct.precio!.toString());
+    fd.append('img', file);
+    fd.append('artista_id_artista', updatedProduct.artista_id_artista!.toString());
+    fd.append('tipo_producto_id_tp', updatedProduct.tipo_producto_id_tp!.toString());
+    return this.http.put(this.API_URI+'/productos/'+id, fd);
   }
 
   deleteProduct(id: string){   
     return this.http.delete(this.API_URI+'/productos/'+id);
   }
 
-  saveProduct(newProduct: Product){
-    return this.http.post(this.API_URI+'/productos', newProduct);
+  saveProduct(newProduct: Product, file: File){
+    const fd = new FormData();
+    fd.append('nombre', newProduct.nombre!);
+    fd.append('descripcion', newProduct.descripcion!);
+    fd.append('precio', newProduct.precio!.toString());
+    fd.append('img', file);
+    fd.append('artista_id_artista', newProduct.artista_id_artista!.toString());
+    fd.append('tipo_producto_id_tp', newProduct.tipo_producto_id_tp!.toString());
+    return this.http.post(this.API_URI+'/productos', fd);
   }
 }

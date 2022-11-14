@@ -5,13 +5,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistsService } from 'src/app/services/artists.service';
 import { ProductTypeService } from 'src/app/services/product-type.service';
 
+interface HtmlInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+  photoSelected!: String | ArrayBuffer;
+  file!: File;
   @HostBinding('class') classes = 'row';
+  
   artists: any = [];
   types: any = [];
   product: Product = {    
@@ -43,18 +49,20 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  saveNewProduct(){
-    delete this.product.id_producto;
-    this.productsService.saveProduct(this.product).subscribe(  
-      res => {
-        console.log(res);
-        this.route.navigate(['/products']);
-      },
-      err => console.error(err)
-    )
-  } 
+  // saveNewProduct(){
+  //   delete this.product.id_producto;
+  //   this.productsService.saveProduct(this.product).subscribe(  
+  //     res => {
+  //       console.log(res);
+  //       this.route.navigate(['/products']);
+  //     },
+  //     err => console.error(err)
+  //   )
+  // } 
   updateProduct(){
-    this.productsService.updateProduct(this.product.id_producto!, this.product).subscribe(
+    this.productsService
+    .updateProduct(this.product.id_producto!, this.product, this.file)
+    .subscribe(
       res => {
         console.log(res);
         this.route.navigate(['/products']);
@@ -79,5 +87,28 @@ export class ProductFormComponent implements OnInit {
         console.log(res);
       }
     );
+  }
+  onPhotoSelected(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files[0]) {
+      this.file = <File>target.files[0]!;
+      // image preview
+      const reader = new FileReader();
+      reader.onload = e => this.photoSelected = reader.result as String;
+      reader.readAsDataURL(this.file);
+    }
+  }
+
+  uploadPhoto() {
+    this.productsService
+      .saveProduct(this.product, this.file)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.route.navigate(['/products'])
+        },
+        err => console.log(err)
+      );
+    return false;
   }
 }

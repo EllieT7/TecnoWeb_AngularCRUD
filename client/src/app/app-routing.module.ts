@@ -4,15 +4,18 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ArtistListComponent } from './components/artist-list/artist-list.component';
 import { ArtistFormComponent } from './components/artist-form/artist-form.component';
+import { MainComponent } from './components/main/main.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '', component: MainComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/add', component: ProductFormComponent },
   { path: 'products/edit/:id', component: ProductFormComponent },
   { path: 'artists', component: ArtistListComponent },
   { path: 'artists/add', component: ArtistFormComponent },
   { path: 'artists/edit/:id', component: ArtistFormComponent },
+  {path: 'contact', component: ContactUsComponent},
   
 ];
 

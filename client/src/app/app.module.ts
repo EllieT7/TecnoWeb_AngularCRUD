@@ -12,6 +12,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductsService } from './services/products.service';
 import { ArtistListComponent } from './components/artist-list/artist-list.component';
 import { ArtistFormComponent } from './components/artist-form/artist-form.component';
+import { MainComponent } from './components/main/main.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import { ArtistFormComponent } from './components/artist-form/artist-form.compon
     ProductFormComponent,
     ProductListComponent,
     ArtistListComponent,
-    ArtistFormComponent
+    ArtistFormComponent,
+    MainComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

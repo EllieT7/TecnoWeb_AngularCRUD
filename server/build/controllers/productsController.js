@@ -30,20 +30,26 @@ class ProductsControllers {
         });
     }
     create(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO producto set ?', [req.body]);
+            const { nombre, descripcion, precio, artista_id_artista, tipo_producto_id_tp } = req.body;
+            const newProduct = { nombre, descripcion, precio, img: (_a = req.file) === null || _a === void 0 ? void 0 : _a.path, artista_id_artista, tipo_producto_id_tp };
+            yield database_1.default.query('INSERT INTO producto set ?', newProduct);
             res.json({ message: 'Producto guardado' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('DELETE FROM product WHERE id_producto = ?', [req.params.id]);
+            yield database_1.default.query('DELETE FROM producto WHERE id_producto = ?', [req.params.id]);
             res.json({ message: 'El producto fue eliminado' });
         });
     }
     update(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('UPDATE producto set ? WHERE id_producto = ?', [req.body, req.params.id]);
+            const { nombre, descripcion, precio, artista_id_artista, tipo_producto_id_tp } = req.body;
+            const updatedProduct = { nombre, descripcion, precio, img: (_a = req.file) === null || _a === void 0 ? void 0 : _a.path, artista_id_artista, tipo_producto_id_tp };
+            yield database_1.default.query('UPDATE producto set ? WHERE id_producto = ?', [updatedProduct, req.params.id]);
             res.json({ message: 'El producto fue actualizado' });
         });
     }

@@ -15,7 +15,9 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="url" name="image" [(ngModel)]="product.img" placeholder="Image" class="form-control" autofocus>
+                    <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+                    <img [src]="photoSelected || 'http://localhost:3000/' +product.img" class="img-fluid" alt="No image"
+                    (click)="photoInput.click()">
                 </div>
                 <br>
                 <div class="form-group">
@@ -31,7 +33,7 @@
                         <option *ngFor="let type of types" [ngValue]="type.id_tp">{{type.descripcion}}</option>
                       </select>
                 </div>
-                <button class="btn btn-success w-100 mt-4" (click)="edit ? updateProduct() : saveNewProduct()">
+                <button class="btn btn-success w-100 mt-4" (click)="edit ? updateProduct() : uploadPhoto()">
                     Save
                 </button>
             </form>

@@ -15,17 +15,21 @@ class ProductsControllers {
   }
 
   public async create(req: Request, res: Response) {
-    await pool.query('INSERT INTO producto set ?', [req.body]);
+    const {nombre, descripcion, precio, artista_id_artista, tipo_producto_id_tp} = req.body;
+    const newProduct = {nombre, descripcion, precio, img: req.file?.path, artista_id_artista, tipo_producto_id_tp};
+    await pool.query('INSERT INTO producto set ?', newProduct);
     res.json({message: 'Producto guardado'});
   }
   
   public async delete(req: Request, res: Response) {
-    await pool.query('DELETE FROM product WHERE id_producto = ?', [req.params.id]);
+    await pool.query('DELETE FROM producto WHERE id_producto = ?', [req.params.id]);
     res.json({message: 'El producto fue eliminado'});
   }
 
   public async update(req: Request, res: Response) {
-    await pool.query('UPDATE producto set ? WHERE id_producto = ?', [req.body, req.params.id]);
+    const {nombre, descripcion, precio, artista_id_artista, tipo_producto_id_tp} = req.body;
+    const updatedProduct = {nombre, descripcion, precio, img: req.file?.path, artista_id_artista, tipo_producto_id_tp};
+    await pool.query('UPDATE producto set ? WHERE id_producto = ?', [updatedProduct, req.params.id]);
     res.json({message: 'El producto fue actualizado'});
   }
 }

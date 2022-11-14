@@ -1,17 +1,19 @@
-<h2 class="text-center">Todos nuestros artistas</h2>
-<br>
-<div class="col-md-4" *ngFor="let artist of artists">
-    <div class="card text-center">
-        <div class="card-header">
-            {{ artist.nombre }}
-            <button class="btn btn-danger" (click)="deleteArtist(artist.id_artista);">
-                <i class="far fa-trash-alt"></i>
-            </button>
-        </div>
-        <img [src]="artist.img" class="card-img-top" alt="s">
-        <div class="card card-body">
-            <p>{{ artist.descripcion }}</p>
-            <a class="btn btn-primary" [routerLink]="['/artists/edit', artist.id_artista]">Edit</a>
+
+    <h2 class="text-center">Todos nuestros artistas</h2>
+    <br>
+    <div class="col-md-4" *ngFor="let artist of artists">
+        <div class="card text-center">
+            <div class="card-header">
+                {{ artist.nombre }}
+                <button class="btn btn-danger" (click)="deleteArtist(artist.id_artista);">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+            <img [src]="artist.img" class="card-img-top" alt="s">
+            <div class="card card-body">
+                <p>{{ artist.descripcion }}</p>
+                <a class="btn btn-primary" [routerLink]="['/artists/edit', artist.id_artista]">Edit</a>
+            </div>
         </div>
     </div>
-</div>
+
