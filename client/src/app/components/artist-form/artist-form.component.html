@@ -1,0 +1,30 @@
+<div class="col-md-4 offset-md-2">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <input type="text" name="title" [(ngModel)]="artist.nombre" placeholder="Title" class="form-control" autofocus>
+                </div>
+                <br>
+                <div class="form-group">
+                    <textarea name="description" rows="2" [(ngModel)]="artist.descripcion" placeholder="Description" class="form-control"></textarea>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="url" name="image" [(ngModel)]="artist.img" placeholder="Image" class="form-control" autofocus>
+                </div>
+                <button class="btn btn-success w-100 mt-4" (click)="edit ? updateArtist() : saveNewArtist()">
+                    Save
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card card-body text-center">
+        <img [src]="artist.img" class="card-img-top" alt="">
+        <h3>{{artist.id_artista}}.  {{artist.nombre == '' ? 'Titulo': artist.nombre}}</h3>
+        <p>{{artist.descripcion == '' ? 'Escribe tu descripcion' : artist.descripcion}}</p>
+    </div>
+</div>

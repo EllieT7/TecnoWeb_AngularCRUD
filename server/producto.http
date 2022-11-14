@@ -1,0 +1,33 @@
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Sonic",
+  "descripcion": "Sonic si",
+  "precio": 100,
+  "img": "http://example.com/image.png",
+  "artista_id_artista": 1,
+  "tipo_producto_id_tp": 1
+}
+
+#####
+DELETE http://localhost:3000/api/productos/1
+
+#####
+PUT http://localhost:3000/api/productos/1
+Content-Type: application/json
+
+{
+  "nombre": "Map of the Soul: 7",
+  "descripcion": "Sonic si",
+  "precio": 100,
+  "img": "https://cdn-contents.weverseshop.io/public/shop/d76e2179f2df9ef9a8ce9ada8c809dc2.jpg?q=100&w=1440&h=1728",
+  "artista_id_artista": 1,
+  "tipo_producto_id_tp": 1
+}
+
+###
+GET http://localhost:3000/api/productos/
+
+###
+GET http://localhost:3000/api/productos/1

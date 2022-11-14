@@ -1,0 +1,49 @@
+<div class="col-md-4 offset-md-2">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <input type="text" name="title" [(ngModel)]="product.nombre" placeholder="Title" class="form-control" autofocus>
+                </div>
+                <br>
+                <div class="form-group">
+                    <textarea name="description" rows="2" [(ngModel)]="product.descripcion" placeholder="Description" class="form-control"></textarea>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="number" name="description" [(ngModel)]="product.precio" placeholder="Precio" class="form-control">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="url" name="image" [(ngModel)]="product.img" placeholder="Image" class="form-control" autofocus>
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="browser-default custom-select" [(ngModel)]="product.artista_id_artista" [ngModelOptions]="{standalone: true}"> 
+                        <option selected="">Selecciona un artista</option>
+                        <option *ngFor="let artist of artists" [ngValue]="artist.id_artista">{{artist.nombre}}</option>
+                      </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="browser-default custom-select" [(ngModel)]="product.tipo_producto_id_tp" [ngModelOptions]="{standalone: true}"> 
+                        <option selected="">Selecciona un tipo de producto</option>
+                        <option *ngFor="let type of types" [ngValue]="type.id_tp">{{type.descripcion}}</option>
+                      </select>
+                </div>
+                <button class="btn btn-success w-100 mt-4" (click)="edit ? updateProduct() : saveNewProduct()">
+                    Save
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card card-body text-center">
+        <img [src]="product.img" class="card-img-top" alt="">
+        <h3>{{product.id_producto}}.  {{product.nombre == '' ? 'Titulo': product.nombre}}</h3>
+        <p>{{product.descripcion == '' ? 'Escribe tu descripcion' : product.descripcion}}</p>
+        <p>{{product.precio}}</p>
+    </div>
+</div>

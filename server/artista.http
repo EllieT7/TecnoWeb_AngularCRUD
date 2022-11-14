@@ -1,0 +1,27 @@
+POST http://localhost:3000/api/artistas
+Content-Type: application/json
+
+{
+  "nombre": "BTS",
+  "descripcion": "Los amores de mi vida",
+  "img": "http://example.com/image.png"
+}
+
+#####
+DELETE http://localhost:3000/api/artistas/1
+
+#####
+PUT http://localhost:3000/api/artistas/2
+Content-Type: application/json
+
+{
+  "nombre": "BTS <3",
+  "descripcion": "Los 7 amores de mi vida",
+  "img": "http://example.com/image.png"
+}
+
+###
+GET http://localhost:3000/api/artistas/
+
+###
+GET http://localhost:3000/api/artistas/1
