@@ -9,7 +9,7 @@
                     <i class="far fa-trash-alt"></i>
                 </button>
             </div>
-            <img [src]="artist.img" class="card-img-top" alt="s">
+            <img [src]="'http://localhost:3000/' + artist.img" class="card-img-top" alt="s">
             <div class="card card-body">
                 <p>{{ artist.descripcion }}</p>
                 <a class="btn btn-primary" [routerLink]="['/artists/edit', artist.id_artista]">Edit</a>

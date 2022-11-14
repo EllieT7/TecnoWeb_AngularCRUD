@@ -1,5 +1,6 @@
 import { Router } from "express";
 import artistsController from "../controllers/artistsController";
+import multer from "../libs/multer";
 
 class ArtistsRoutes {
     public router: Router = Router();
@@ -11,8 +12,8 @@ class ArtistsRoutes {
     config(): void {
         this.router.get("/", artistsController.list);
         this.router.get("/:id", artistsController.getOne); 
-        this.router.post('/', artistsController.create);
-        this.router.put('/:id', artistsController.update);
+        this.router.post('/', multer.single('img'), artistsController.create);
+        this.router.put('/:id', multer.single('img'), artistsController.update);
         this.router.delete('/:id', artistsController.delete);
 
     }

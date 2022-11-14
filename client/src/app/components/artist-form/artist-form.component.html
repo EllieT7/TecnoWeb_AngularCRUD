@@ -11,7 +11,9 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="url" name="image" [(ngModel)]="artist.img" placeholder="Image" class="form-control" autofocus>
+                    <input type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+                    <img [src]="photoSelected || 'http://localhost:3000/' + artist.img" class="img-fluid" alt="No image"
+                    (click)="photoInput.click()">
                 </div>
                 <button class="btn btn-success w-100 mt-4" (click)="edit ? updateArtist() : saveNewArtist()">
                     Save

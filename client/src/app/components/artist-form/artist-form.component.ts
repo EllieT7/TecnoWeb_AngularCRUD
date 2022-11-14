@@ -8,6 +8,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./artist-form.component.css']
 })
 export class ArtistFormComponent implements OnInit {
+  photoSelected!: String | ArrayBuffer;
+  file!: File;
+
   @HostBinding('class') classes = 'row';
   
   edit: boolean = false;
@@ -35,7 +38,22 @@ export class ArtistFormComponent implements OnInit {
   }
   saveNewArtist(){
     delete this.artist.id_artista;
-    this.artistsService.saveArtist(this.artist).subscribe(
+    this.artistsService
+    .saveArtist(this.artist, this.file)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/artists']);
+      },
+      err => console.error(err)
+    );
+    return false;
+  }
+
+  updateArtist(){
+    this.artistsService
+    .updateArtist(this.artist.id_artista!, this.artist, this.file)
+    .subscribe(
       res => {
         console.log(res);
         this.router.navigate(['/artists']);
@@ -44,13 +62,14 @@ export class ArtistFormComponent implements OnInit {
     )
   }
 
-  updateArtist(){
-    this.artistsService.updateArtist(this.artist.id_artista!, this.artist).subscribe(
-      res => {
-        console.log(res);
-        this.router.navigate(['/artists']);
-      },
-      err => console.error(err)
-    )
+  onPhotoSelected(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files[0]) {
+      this.file = <File>target.files[0]!;
+      // image preview
+      const reader = new FileReader();
+      reader.onload = e => this.photoSelected = reader.result as String;
+      reader.readAsDataURL(this.file);
+    }
   }
 }

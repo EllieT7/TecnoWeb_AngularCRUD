@@ -18,15 +18,23 @@ export class ArtistsService {
     return this.htttp.get(this.API_URI+'/artistas/'+id);
   }
 
-  updateArtist(id: string|number, updatedArtist: Artist){
-    return this.htttp.put(this.API_URI+'/artistas/'+id, updatedArtist);
+  updateArtist(id: string|number, updatedArtist: Artist, file: File){
+    const artist = new FormData();
+    artist.append('nombre', updatedArtist.nombre!);
+    artist.append('descripcion', updatedArtist.descripcion!);
+    artist.append('img', file);
+    return this.htttp.put(this.API_URI+'/artistas/'+id, artist);
   }
 
   deleteArtist(id: string){   
     return this.htttp.delete(this.API_URI+'/artistas/'+id);
   }
   
-  saveArtist(newArtist: Artist){
-    return this.htttp.post(this.API_URI+'/artistas', newArtist);
+  saveArtist(newArtist: Artist, file: File){
+    const artist = new FormData();
+    artist.append('nombre', newArtist.nombre!);
+    artist.append('descripcion', newArtist.descripcion!);
+    artist.append('img', file);
+    return this.htttp.post(this.API_URI+'/artistas', artist);
   }
 }

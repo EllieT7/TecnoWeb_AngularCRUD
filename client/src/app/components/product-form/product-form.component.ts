@@ -5,9 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistsService } from 'src/app/services/artists.service';
 import { ProductTypeService } from 'src/app/services/product-type.service';
 
-interface HtmlInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
+
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -70,6 +68,7 @@ export class ProductFormComponent implements OnInit {
       err => console.error(err)
     )
   }
+  
   getArtists(){
     this.artistService.getArtists().subscribe(
       res => {
@@ -100,6 +99,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   uploadPhoto() {
+    delete this.product.id_producto;
     this.productsService
       .saveProduct(this.product, this.file)
       .subscribe(

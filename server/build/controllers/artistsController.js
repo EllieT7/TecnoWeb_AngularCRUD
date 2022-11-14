@@ -30,8 +30,11 @@ class ArtistControllers {
         });
     }
     create(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO artista set ?', [req.body]);
+            const { nombre, descripcion } = req.body;
+            const newArtist = { nombre, descripcion, img: (_a = req.file) === null || _a === void 0 ? void 0 : _a.path };
+            yield database_1.default.query('INSERT INTO artista set ?', newArtist);
             res.json({ message: 'artista guardado' });
         });
     }
@@ -42,8 +45,11 @@ class ArtistControllers {
         });
     }
     update(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('UPDATE artista set ? WHERE id_artista = ?', [req.body, req.params.id]);
+            const { nombre, descripcion } = req.body;
+            const updatedArtist = { nombre, descripcion, img: (_a = req.file) === null || _a === void 0 ? void 0 : _a.path };
+            yield database_1.default.query('UPDATE artista set ? WHERE id_artista = ?', [updatedArtist, req.params.id]);
             res.json({ message: 'El artista fue actualizado' });
         });
     }
