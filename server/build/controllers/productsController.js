@@ -45,10 +45,16 @@ class ProductsControllers {
         });
     }
     update(req, res) {
-        var _a;
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
             const { nombre, descripcion, precio, artista_id_artista, tipo_producto_id_tp } = req.body;
-            const updatedProduct = { nombre, descripcion, precio, img: (_a = req.file) === null || _a === void 0 ? void 0 : _a.path, artista_id_artista, tipo_producto_id_tp };
+            var updatedProduct;
+            if (((_a = req.file) === null || _a === void 0 ? void 0 : _a.path) == undefined) {
+                updatedProduct = { nombre, descripcion, precio, img: req.body.img, artista_id_artista, tipo_producto_id_tp };
+            }
+            else {
+                updatedProduct = { nombre, descripcion, precio, img: (_b = req.file) === null || _b === void 0 ? void 0 : _b.path, artista_id_artista, tipo_producto_id_tp };
+            }
             yield database_1.default.query('UPDATE producto set ? WHERE id_producto = ?', [updatedProduct, req.params.id]);
             res.json({ message: 'El producto fue actualizado' });
         });

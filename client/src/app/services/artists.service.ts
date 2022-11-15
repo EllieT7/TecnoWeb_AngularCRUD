@@ -22,7 +22,13 @@ export class ArtistsService {
     const artist = new FormData();
     artist.append('nombre', updatedArtist.nombre!);
     artist.append('descripcion', updatedArtist.descripcion!);
-    artist.append('img', file);
+    if(file.name=='foo'){
+      console.log('no hay imagen');
+      artist.append('img', updatedArtist.img!);
+    }else{
+      console.log('si hay imagen');
+      artist.append('img', file);
+    }
     return this.htttp.put(this.API_URI+'/artistas/'+id, artist);
   }
 

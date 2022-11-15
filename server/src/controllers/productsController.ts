@@ -28,7 +28,12 @@ class ProductsControllers {
 
   public async update(req: Request, res: Response) {
     const {nombre, descripcion, precio, artista_id_artista, tipo_producto_id_tp} = req.body;
-    const updatedProduct = {nombre, descripcion, precio, img: req.file?.path, artista_id_artista, tipo_producto_id_tp};
+    var updatedProduct;
+    if(req.file?.path==undefined){
+      updatedProduct = {nombre, descripcion, precio, img: req.body.img, artista_id_artista, tipo_producto_id_tp};
+    }else{
+      updatedProduct = {nombre, descripcion, precio, img: req.file?.path, artista_id_artista, tipo_producto_id_tp};
+    }
     await pool.query('UPDATE producto set ? WHERE id_producto = ?', [updatedProduct, req.params.id]);
     res.json({message: 'El producto fue actualizado'});
   }

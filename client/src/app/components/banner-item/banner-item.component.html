@@ -1,0 +1,17 @@
+<div class="hero-items owl-carousel">
+    <div *ngFor="let item of items" class="single-hero-items set-bg" [attr.data-setbg]="item.image">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <span>{{item.category}}</span>
+                    <h1>{{item.title}}</h1>
+                    <p>{{item.description}}</p>
+                    <a href="#" class="primary-btn">Shop Now</a>
+                </div>
+            </div>
+            <div class="off-card">
+                <h2>Sale <span>50%</span></h2>
+            </div>
+        </div>
+    </div>
+</div>

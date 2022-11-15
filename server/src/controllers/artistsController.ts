@@ -28,7 +28,12 @@ class ArtistControllers {
 
   public async update(req: Request, res: Response) {
     const {nombre, descripcion} = req.body;
-    const updatedArtist = {nombre, descripcion, img: req.file?.path};
+    var updatedArtist;
+    if(req.file?.path==undefined){
+      updatedArtist = {nombre, descripcion, img: req.body.img};
+    }else{
+      updatedArtist = {nombre, descripcion, img: req.file?.path};
+    }
     await pool.query('UPDATE artista set ? WHERE id_artista = ?', [updatedArtist, req.params.id]);
     res.json({message: 'El artista fue actualizado'});
   }

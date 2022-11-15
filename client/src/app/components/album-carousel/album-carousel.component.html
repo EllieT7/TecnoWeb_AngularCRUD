@@ -1,0 +1,55 @@
+<!-- Js Plugins -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="assets/js/jquery.countdown.min.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/jquery.zoom.min.js"></script>
+<script src="assets/js/jquery.dd.min.js"></script>
+<script src="assets/js/jquery.slicknav.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="product-large set-bg" data-setbg="assets/img/albums.png">
+                <h2>Albums</h2>
+                <a href="#">Descubrir más</a>
+            </div>
+        </div>
+<div class="col-lg-8 offset-lg-1">
+    <div class="filter-control">
+        <ul>
+            <li class="active">Albums recientes</li>
+        </ul>
+    </div>
+    <div class="product-slider owl-carousel">
+        <div *ngFor="let album of albums" class="product-item" style="width: 200px;">
+            <div class="pi-pic">
+                <img [src]="'http://localhost:3000/'+album.img" alt="" />
+                <div class="sale">Sale</div>
+                <div class="icon">
+                    <i class="icon_heart_alt"></i>
+                </div>
+                <ul>
+                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                </ul>
+            </div>
+            <div class="pi-text">
+                <div class="catagory-name">{{album.id_artista}}</div>
+                <a href="#">
+                    <h5>{{album.nombre}}</h5>
+                </a>
+                <div class="product-price">
+                    {{album.precio}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+

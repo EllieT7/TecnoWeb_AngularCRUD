@@ -45,10 +45,16 @@ class ArtistControllers {
         });
     }
     update(req, res) {
-        var _a;
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
             const { nombre, descripcion } = req.body;
-            const updatedArtist = { nombre, descripcion, img: (_a = req.file) === null || _a === void 0 ? void 0 : _a.path };
+            var updatedArtist;
+            if (((_a = req.file) === null || _a === void 0 ? void 0 : _a.path) == undefined) {
+                updatedArtist = { nombre, descripcion, img: req.body.img };
+            }
+            else {
+                updatedArtist = { nombre, descripcion, img: (_b = req.file) === null || _b === void 0 ? void 0 : _b.path };
+            }
             yield database_1.default.query('UPDATE artista set ? WHERE id_artista = ?', [updatedArtist, req.params.id]);
             res.json({ message: 'El artista fue actualizado' });
         });

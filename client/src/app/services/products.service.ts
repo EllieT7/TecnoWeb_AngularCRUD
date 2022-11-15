@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../models/producto';
+import { isEmpty } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,13 @@ export class ProductsService {
     fd.append('nombre', updatedProduct.nombre!);
     fd.append('descripcion', updatedProduct.descripcion!);
     fd.append('precio', updatedProduct.precio!.toString());
-    fd.append('img', file);
+    if(file.name=='foo'){
+      console.log('no hay imagen');
+      fd.append('img', updatedProduct.img!);
+    }else{
+      console.log('si hay imagen');
+      fd.append('img', file);
+    }
     fd.append('artista_id_artista', updatedProduct.artista_id_artista!.toString());
     fd.append('tipo_producto_id_tp', updatedProduct.tipo_producto_id_tp!.toString());
     return this.http.put(this.API_URI+'/productos/'+id, fd);

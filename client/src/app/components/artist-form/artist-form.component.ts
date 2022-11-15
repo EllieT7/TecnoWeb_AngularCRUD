@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ArtistFormComponent implements OnInit {
   photoSelected!: String | ArrayBuffer;
-  file!: File;
+  file: File = new File([], "foo");
 
   @HostBinding('class') classes = 'row';
   

@@ -14,6 +14,8 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
 import { ArtistFormComponent } from './components/artist-form/artist-form.component';
 import { MainComponent } from './components/main/main.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { BannerItemComponent } from './components/banner-item/banner-item.component';
+import { AlbumCarouselComponent } from './components/album-carousel/album-carousel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     ArtistListComponent,
     ArtistFormComponent,
     MainComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    BannerItemComponent,
+    AlbumCarouselComponent
   ],
   imports: [
     BrowserModule,

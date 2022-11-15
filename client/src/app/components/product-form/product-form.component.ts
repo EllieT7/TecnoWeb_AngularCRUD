@@ -13,7 +13,9 @@ import { ProductTypeService } from 'src/app/services/product-type.service';
 })
 export class ProductFormComponent implements OnInit {
   photoSelected!: String | ArrayBuffer;
-  file!: File;
+  file: File = new File(["foo"], "foo", {
+    type: "text/plain",
+  });;
   @HostBinding('class') classes = 'row';
   
   artists: any = [];
